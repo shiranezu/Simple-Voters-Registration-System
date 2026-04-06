@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, Response
-import csv
-import mysql.connector
 from dotenv import load_dotenv
-import uuid
+import uuid, os, csv, mysql.connector
 from datetime import datetime
-import os
 
 load_dotenv()
 app = Flask(__name__)
@@ -63,6 +60,45 @@ def voters():
     voters = c.fetchall()
     conn.close()
     return render_template('voters.html', voters=voters)
+
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def vote_candidate():
+#     if request.method == 'POST':
+#         voter_id = int(request.form['Voter id'])
+#         candidate = request.form['Candidate name']
+        
+
+#         if voter_id != 18:
+#             flash('Too young to register.', 'error')
+#             return redirect(url_for('register'))
+
+#         voter_id = str(uuid.uuid4())[:8]
+#         voted_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+#         conn = get_connection()
+#         c = conn.cursor()
+#         c.execute("""INSERT INTO voters (voter_id, full_name, age, gender, state, lga, registered_at)
+#                      VALUES (%s, %s, %s, %s, %s, %s, %s)""",
+#                   (voter_id, full_name, age, gender, state, lga, voted_at))
+#         conn.commit()
+#         conn.close()
+
+#         flash(f'Voting successful! Voter ID: {voter_id}', 'success')
+#         return redirect(url_for('register'))
+
+#     return render_template('register.html')
+
+# # voted for page
+# @app.route('/view_votes')
+# def votes():
+#     conn = get_connection()
+#     c = conn.cursor()
+#     c.execute("SELECT * FROM voted")
+#     voters = c.fetchall()
+#     conn.close()
+#     return render_template('voted_for.html', voters=voters)
+
 
 # Search voter by ID
 @app.route('/search', methods=['GET', 'POST'])

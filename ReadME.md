@@ -7,6 +7,7 @@ This system allows new voters to register by submitting personal details. Admins
 1. Register New Voter
 2. View All Voters
 3. Search Voter by ID
+4. view votes by voters
 5. Delete Voter
 6. Exit.
 These above are the features of the app.

@@ -106,7 +106,7 @@ def delete_voter():
         c.execute("DELETE FROM voters WHERE voter_id = %s", (voter_id,))
         conn.commit()
         conn.close()
-        print("🗑️ Voter deleted.")
+        print(" Voter deleted.")
     else:
         print("Cancelled.")
 
